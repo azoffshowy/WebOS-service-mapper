@@ -1,0 +1,155 @@
+body {
+  margin: 0;
+  font-family: sans-serif;
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+  background: #111;
+  color: #ddd;
+}
+
+#graph {
+  flex: 1 1 auto;
+}
+
+#graph svg {
+  background: #111;
+}
+
+#sidebar {
+  width: 360px;
+  max-width: 42%;
+  border-left: 1px solid #444;
+  padding: 8px 10px;
+  box-sizing: border-box;
+  font-size: 13px;
+  overflow-y: auto;
+  background: #181818;
+}
+
+#sidebar h2 {
+  margin-top: 0;
+  font-size: 14px;
+  color: #f0f0f0;
+}
+
+#controls {
+  margin-bottom: 8px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid #333;
+}
+
+#controls input[type="text"] {
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 4px;
+  font-size: 12px;
+  padding: 2px 4px;
+  background: #111;
+  color: #f0f0f0;
+  border: 1px solid #444;
+}
+
+#controls select,
+#controls button {
+  font-size: 12px;
+  margin-right: 4px;
+  margin-bottom: 4px;
+  background: #222;
+  color: #eee;
+  border: 1px solid #555;
+}
+
+#controls button:hover {
+  background: #333;
+}
+
+#results {
+  max-height: 180px;
+  overflow-y: auto;
+  font-size: 12px;
+}
+
+#results ul {
+  padding-left: 16px;
+  margin: 4px 0;
+}
+
+#results li {
+  margin-bottom: 2px;
+}
+
+#results a {
+  text-decoration: none;
+  color: #9cf;
+}
+
+#results a:hover {
+  text-decoration: underline;
+}
+
+#sidebar a {
+  color: #f0f0f0;
+}
+
+.node circle {
+  stroke: #000;
+  stroke-width: 1px;
+  cursor: pointer;
+}
+
+.node text {
+  pointer-events: none;
+  font-size: 10px;
+  fill: #f8f8f8;
+  paint-order: stroke;
+  stroke: #000;
+  stroke-width: 2px;
+}
+
+line.link {
+  stroke: #777;
+  stroke-opacity: 0.7;
+}
+
+.link.acg-method {
+  stroke-dasharray: 2,2;
+}
+
+.link.uses-acg {
+  stroke-dasharray: 4,2;
+}
+
+.link.owns-name {
+  stroke-dasharray: 1,4;
+}
+
+.link.can-call {
+  stroke: #4fc3f7;
+  stroke-dasharray: 3,3;
+}
+
+.node.service circle {
+  r: 7;
+  fill: #1f77b4;
+}
+
+.node.acg circle {
+  r: 6;
+  fill: #ff7f0e;
+}
+
+.node.endpoint circle {
+  r: 4;
+  fill: #2ca02c;
+}
+
+.node.binary circle {
+  r: 8;
+  fill: #9467bd;
+}
+
+.node.selected circle {
+  stroke-width: 3px;
+  stroke: #ff0;
+}

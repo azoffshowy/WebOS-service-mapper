@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>webOS ACG / Service Graph</title>
+<link rel="stylesheet" href="graph.css">
+</head>
+<body>
+<div id="graph">
+  <svg width="100%" height="100%"></svg>
+</div>
+<div id="sidebar">
+  <h2>ACG / Service Explorer</h2>
+  <div id="controls">
+    <input id="search" type="text" placeholder="Search (ACG, service name, binary, endpoint)">
+    <div>
+      <select id="search-kind">
+        <option value="any">any type</option>
+        <option value="service">service</option>
+        <option value="acg">acg</option>
+        <option value="endpoint">endpoint</option>
+        <option value="binary">binary</option>
+      </select>
+      <button id="search-btn">Search</button>
+    </div>
+    <div id="results"></div>
+  </div>
+  <div id="details">
+    <p>Use search to pick a node. Graph shows only that node and its direct neighbors.</p>
+  </div>
+</div>
+
+<script>
+  // injected by mapEndpoints.py
+  window.GRAPH_NODES = __NODES__;
+  window.GRAPH_LINKS = __LINKS__;
+</script>
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script src="graph.js"></script>
+</body>
+</html>

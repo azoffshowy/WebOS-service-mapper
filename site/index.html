@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>webOS ACG / Service Graphs</title>
+  <style>
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #111;
+      color: #eee;
+      margin: 0;
+      padding: 2rem;
+    }
+    h1 {
+      margin-top: 0;
+    }
+    ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    li {
+      margin: 0.5rem 0;
+    }
+    a {
+      color: #9cf;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    code {
+      background: #222;
+      padding: 2px 4px;
+      border-radius: 3px;
+    }
+  </style>
+</head>
+<body>
+  <h1>webOS ACG / Service Graphs</h1>
+  <p>Interactive D3 graphs generated from <code>/usr/share/luna-service2</code> security config.</p>
+  <ul>
+    <li><a href="acg_webos24_23.23.30.html">webOS 24 – 23.23.30</a></li>
+    <li><a href="acg_webos5_04.63.25.html">webOS 5 – 04.63.25</a></li>
+    <li><a href="acg_webos6_03.53.45.html">webOS 6 – 03.53.45</a></li>
+  </ul>
+  <h2>Generator script</h2>
+  <p>Script is in <code>tools/mapEndpoints.py</code>. Example usage:</p>
+  <pre>python3 tools/mapEndpoints.py --base-dir /usr/share/luna-service2 --output site/acg_webos24_23.23.30.html</pre>
+</body>
+</html>
