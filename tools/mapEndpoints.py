@@ -233,6 +233,21 @@ def load_services(
                     relation="owns-name",
                 )
 
+def load_dbus_services(
+    base_dir: Path,
+    nodes: List[Node],
+    node_index: Dict[str, int],
+    links: List[Link],
+) -> None:
+    # /usr/share/luna-service2 -> /usr/share -> /usr/share/dbus-1
+    dbus_root = base_dir.parent / "dbus-1"
+
+    # klassische Sitzungssysteme
+    dbus_services_dir = dbus_root / "services"
+    dbus_system_services_dir = dbus_root / "system-services"
+
+    load_services(dbus_services_dir, nodes, node_index, links)
+    load_services(dbus_system_services_dir, nodes, node_index, links)
 
 
 def load_roles(
@@ -567,8 +582,16 @@ def build_graph(base_dir: Path) -> Tuple[List[Node], List[Link]]:
     node_index: Dict[str, int] = {}
     acg_meta: Dict[str, Dict[str, Any]] = {}
 
+    # LS2-services (services.d)
     load_services(services_dir, nodes, node_index, links)
+
+    # Rollen / LS2 security
     load_roles(roles_dir, nodes, node_index, links)
+
+    # D-Bus services (usr/share/dbus-1/{services,system-services})
+    load_dbus_services(base_dir, nodes, node_index, links)
+
+    # Manifeste + Permissions
     load_manifests_and_permissions(
         base_dir,
         manifests_dir,
@@ -581,7 +604,7 @@ def build_graph(base_dir: Path) -> Tuple[List[Node], List[Link]]:
         acg_meta,
     )
 
-    # apply accumulated ACG metadata
+    # ACG-Meta anwenden
     for acg_name, meta in acg_meta.items():
         node_id = acg_id(acg_name)
         idx = node_index.get(node_id)
@@ -589,7 +612,6 @@ def build_graph(base_dir: Path) -> Tuple[List[Node], List[Link]]:
             nodes[idx].update(meta)
 
     return nodes, links
-
 
 # ---------- HTML generation ----------
 
